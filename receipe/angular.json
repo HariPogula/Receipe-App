@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "receipe"
+    }
+  },
+  "defaultProject": "receipe",
+  "cli": {
+    "analytics": false
+  }
 }
