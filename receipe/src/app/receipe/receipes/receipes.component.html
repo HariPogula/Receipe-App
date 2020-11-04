@@ -1,18 +1,22 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-5">
+      
       <app-receipe-list></app-receipe-list>
       <!-- (recipeWasSelected)="selectedRecipe = $event" -->
     </div>
 
-    <div class="col-md-7">
-      <app-receipe-detail
+    <div class="col-md-7 jumbotron mt-1 mr-n5" style="height: 82.3vh;">
+      <!-- Check Routing for Child Routes -->
+      <router-outlet></router-outlet>
+      <!-- <app-receipe-detail
         [recipe]="selectedRecipe"
-        *ngIf="selectedRecipe; else infoText"
+        *ngIf="selectedRecipe; else infoText" 
       ></app-receipe-detail>
+
       <ng-template #infoText>
-        Please Select Recipe
-      </ng-template>
+      <h4 class="text-info m-5 mx-auto" style="width:200px">  Please Select Recipe</h4>
+      </ng-template> -->
     </div>
   </div>
   <!-- <div class="row">

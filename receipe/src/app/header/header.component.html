@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a
-    class="navbar-brand"
+    class="navbar-brand text-info"
     [routerLink]="['/']"
     routerLinkActive="router-link-active"
     >Receipe Book</a
@@ -23,7 +23,8 @@
         <a
           class="nav-link"
           [routerLink]="['/recipes']"
-          routerLinkActive="router-link-active"
+          routerLinkActive="text-primary"
+          [routerLinkActiveOptions] ="{exact:true}"
           >Receipes</a
         >
       </li>
@@ -31,7 +32,7 @@
         <a
           class="nav-link"
           [routerLink]="['/shopping-list']"
-          routerLinkActive="router-link-active"
+          routerLinkActive="text-primary"
           >Shopping List</a
         >
       </li>
@@ -40,7 +41,7 @@
       </li> -->
     </ul>
     <!-- Example single danger button -->
-    <div class="btn-group dropDown">
+    <div class="btn-group  dropleft">
       <button
         type="button"
         class="btn text-white dropdown-toggle"
