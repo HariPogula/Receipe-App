@@ -1,13 +1,15 @@
 <div *ngIf="!recipe;else selectedRecipe">Please Select Recipe</div>
-<ng-template #selectedRecipe>
-<div class=" row">
-<div class="col-sm-6">
+
+<ng-template #selectedRecipe >
+  
+<div class=" row jumbotron">
+<div class="col-sm-5">
   <div class="row">
     <div class="col-sm-12">
       <h3>{{ recipe.name }}</h3>
     </div>
   </div>
-  
+  <br/>
   <div class="row">
     <div class="col-sm-12 dropdown">
       <div class="btn-group">
@@ -21,11 +23,11 @@
         </button>
   
         <ul class="dropdown-menu">
-          <li class="dropdown-item">
+          <li class="dropdown-item btn">
             <a (click)="AddToShoppingList()"> To Shopping List</a>
           </li>
-          <li class="dropdown-item"><a (click)="onEditRecipe()"> Edit Recipe</a></li>
-          <li class="dropdown-item"><a href="#">Delete Recipe</a></li>
+          <li class="dropdown-item btn"><a (click)="onEditRecipe()"> Edit Recipe</a></li>
+          <li class="dropdown-item btn"><a >Delete Recipe</a></li>
         </ul>
       </div>
     </div>
@@ -49,13 +51,14 @@
   </div>
 </div>
 
-<div class="col-sm-6 float-right">
+<div class="col-sm-auto ml-5 mt-3 ">
   <img
     src="{{ recipe.imgPath }} "
     alt="{{ recipe.name }} "
-    class="img-responsive"
-    style="max-height: 300px;"
+    class="img-fluid rounded "
+    style="max-height: 220px;"
   />
 </div>
 </div>
+
 </ng-template>

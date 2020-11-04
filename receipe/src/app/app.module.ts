@@ -13,6 +13,7 @@ import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.co
 import { ReceipeCreateComponent } from './receipe/receipe-create/receipe-create.component';
 import { ShoppingEditComponent } from './shopping/shopping-edit/shopping-edit.component';
 import { ReceipeListComponent } from './receipe/receipe-list/receipe-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ReceipeListComponent } from './receipe/receipe-list/receipe-list.compon
     ShoppingListComponent,
     ShoppingEditComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
 
   providers: [ShoppingListService],
   bootstrap: [AppComponent],

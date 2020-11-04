@@ -26,7 +26,8 @@ export class ReceipeListComponent implements OnInit {
   }
 
   resetSelectedRecipe() {
-    this.showSelected = this.recipeService.isRecipeSelected.next(false);
+    this.router.navigate(['recipes']);
+    // this.showSelected = this.recipeService.isRecipeSelected.next(false);
   }
 
   onNewRecipe() {

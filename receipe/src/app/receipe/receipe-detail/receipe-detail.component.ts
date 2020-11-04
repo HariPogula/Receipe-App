@@ -33,6 +33,7 @@ export class ReceipeDetailComponent implements OnInit {
   }
   onEditRecipe() {
     // We don't need to pass Id because we are using relative Path.
+    // Till Here, the url is http://localhost:4200/recipes/0. So we just need to pass edit after this.
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
 }
