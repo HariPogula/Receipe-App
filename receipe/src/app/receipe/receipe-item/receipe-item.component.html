@@ -1,7 +1,13 @@
-<a (click)="onSelected()" class="list-group-item clearfix">
+<!-- (click)="onSelected()" -->
+
+
+<a  class="list-group-item clearfix" 
+[routerLink]="[index]" routerLinkActive="bg-secondary" [routerLinkActiveOptions]="{exact:true}"
+
+>
   <div class="float-left">
-    <h5 class="list-group-item-heading">{{ recipe.name }}</h5>
-    <p class="list-group-item-text">{{ recipe.description }}</p>
+    <h5 class="list-group-item-heading text-danger">{{ recipe.name }}</h5>
+    <p class="list-group-item-text text-secondary">{{ recipe.description }}</p>
   </div>
   <span class="float-right">
     <img

@@ -1,16 +1,21 @@
 <div class="row">
   <div class="col-sm-10">
     <br />
-    <button type="button" class="btn btn-primary">New Recipe</button>
+    <button type="button" class="btn btn-info" (click)="onNewRecipe()" >New Recipe</button>
   </div>
 </div>
 <hr />
-
+<div >
+  <button type="button"  (click)="resetSelectedRecipe()" class="btn btn-warning btn-sm float-right">Reset</button>
+</div>
+<br/>
 <div class="row">
-  <div class="col-sm-10">
-    <app-receipe-item
-      *ngFor="let item of recipe"
+  <div class="col-sm-10 btn">
+    <app-receipe-item 
+      *ngFor="let item of recipe;let i=index"
       [recipe]="item"
+     [index]="i"
+     
     ></app-receipe-item>
 
     <!-- (recipeSelected)="onRecipeSelected(item)" -->
