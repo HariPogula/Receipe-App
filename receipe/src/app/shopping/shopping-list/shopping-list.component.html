@@ -1,15 +1,26 @@
+
+
+
 <div class="row container">
   <div class="col-sm-10">
     <app-shopping-edit> </app-shopping-edit>
     <!-- (ingredientAdded)="inIngAdded($event)" -->
     <hr />
+    <div class="container p-5 jumbotron " *ngIf="ingredients.length<=0;else showIng">
+      Please add Ingredients.
+    </div>
+    <ng-template #showIng>
+
     <ul class="list-group">
       <a
-        *ngFor="let item of ingredients"
+        *ngFor="let item of ingredients;let i=index"
         class="list-group-item"
         style="cursor: pointer;"
-        >{{ item.name }} ({{ item.amount }})
+        (click)="onEdit(i)"
+        >{{ item.ingName }} ({{ item.ingAmount }})
       </a>
     </ul>
+  </ng-template>
   </div>
 </div>
+

@@ -1,17 +1,18 @@
 <div class="row">
   <div class="col-sm-10">
     <br />
-    <button type="button" class="btn btn-info" (click)="onNewRecipe()" >New Recipe</button>
+    <button type="button" class="btn btn-info float-right" (click)="onNewRecipe()" >New Recipe</button>
   </div>
 </div>
-<hr />
-<div >
-  <button type="button"  (click)="resetSelectedRecipe()" class="btn btn-warning btn-sm float-right">Reset</button>
-</div>
-<br/>
-<div class="row">
+<!-- <hr /> -->
+
+  <!-- <button type="button"  (click)="resetSelectedRecipe()" class="btn btn-warning btn-sm ">Reset</button> -->
+
+
+<div class="row" style="width:70vh;height:75vh;overflow-y:scroll">
   <div class="col-sm-10 btn">
     <app-receipe-item 
+    class="m-1"
       *ngFor="let item of recipe;let i=index"
       [recipe]="item"
      [index]="i"
@@ -21,3 +22,5 @@
     <!-- (recipeSelected)="onRecipeSelected(item)" -->
   </div>
 </div>
+
+
