@@ -27,7 +27,7 @@
             <a (click)="AddToShoppingList()"> To Shopping List</a>
           </li>
           <li class="dropdown-item btn"><a (click)="onEditRecipe()"> Edit Recipe</a></li>
-          <li class="dropdown-item btn"><a >Delete Recipe</a></li>
+          <li class="dropdown-item btn"><a (click)="onDeleteRecipe()" >Delete Recipe</a></li>
         </ul>
       </div>
     </div>
@@ -44,7 +44,7 @@
       Ingredients:
       <ul class="list-group">
         <li *ngFor="let ing of recipe.ingredeients" class="list-group-item">
-          {{ ing.name }} -- {{ ing.amount }}
+          {{ ing.ingName }} -- {{ ing.ingAmount }}
         </li>
       </ul>
     </div>

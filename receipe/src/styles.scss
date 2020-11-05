@@ -2,6 +2,11 @@
 
 @import "./assets/bootstrap.simplex.min.css";
 
+.disabled {
+  cursor: not-allowed;
+}
+
+//For Scrollbar
 /* width */
 ::-webkit-scrollbar {
   width: 2px;
