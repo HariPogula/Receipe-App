@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,13 @@ import { ShoppingEditComponent } from './shopping/shopping-edit/shopping-edit.co
 import { ReceipeListComponent } from './receipe/receipe-list/receipe-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeListService } from './receipe/receipe-list/recipe-list.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { AuthComponent } from './auth/auth/auth.component';
+import { AuthInterceptorService } from './auth/aith-interceptor.service';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +36,30 @@ import { RecipeListService } from './receipe/receipe-list/recipe-list.service';
     ReceipeListComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
+    AuthComponent,
+    AlertComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFirestoreModule,
+  ],
 
-  providers: [ShoppingListService, RecipeListService],
+  providers: [
+    ShoppingListService,
+    RecipeListService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

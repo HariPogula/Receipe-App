@@ -1,15 +1,16 @@
 <!-- (click)="onSelected()" -->
 <a  class="list-group-item clearfix"
-[routerLink]="[index]" routerLinkActive="bg-secondary" [routerLinkActiveOptions]="{exact:true}"
+[routerLink]="[recipe.name]" routerLinkActive="bg-secondary" [routerLinkActiveOptions]="{exact:true}"
 
 >
   <div class="float-left">
-    <h5 class="list-group-item-heading text-danger">{{ recipe.name }}</h5>
+    <h5 class="list-group-item-heading text-danger">{{ recipe.id }} </h5>
     <p class="list-group-item-text text-secondary">{{ recipe.description }}</p>
   </div>
+ 
   <span class="float-right">
     <img
-      src="{{ recipe.imgPath }}"
+      src="{{ recipe.imagePath }}"
       alt="No Image"
       class="img-responsive"
       style="max-height: 50px;"
