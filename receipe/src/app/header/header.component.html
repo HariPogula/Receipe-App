@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a
     class="navbar-brand text-info"
-    [routerLink]="['/']"
-    routerLinkActive="router-link-active"
+    
     >Receipe Book</a
   >
   <button
@@ -25,6 +24,7 @@
           [routerLink]="['/recipes']"
           routerLinkActive="text-primary"
           [routerLinkActiveOptions] ="{exact:true}"
+          *ngIf="isAuthenticated"
           >Receipes</a
         >
       </li>
@@ -36,9 +36,19 @@
           >Shopping List</a
         >
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li> -->
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/auth']"
+          routerLinkActive="text-primary"
+          *ngIf="!isAuthenticated"
+          >Authentication</a
+        >
+      </li>
+      <li class="nav-item"  (click)="onLogout()" *ngIf="isAuthenticated">
+        <a class="nav-link">Logout</a>
+      </li>
     </ul>
     <!-- Example single danger button -->
     <div class="btn-group  dropleft">
@@ -50,11 +60,11 @@
         Action
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" (click)="onSaveData()">Save Data</a>
+        <a class="dropdown-item"  (click)="onFetchData()" >Fetch Data</a>
+        <!-- <a class="dropdown-item" href="#">Something else here</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+        <a class="dropdown-item" href="#">Separated link</a> -->
       </div>
     </div>
   </div>

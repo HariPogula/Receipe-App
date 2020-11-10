@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DatastorageService } from 'src/app/shared/datastorage.service';
+import { RecipeFireService } from 'src/app/shared/services/recipe-fire.service';
 
 import { RecipeListService } from '../receipe-list/recipe-list.service';
 
@@ -18,7 +20,9 @@ export class ReceipeCreateComponent implements OnInit {
     private route: ActivatedRoute,
     private recipeService: RecipeListService,
     private domSanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private dataService: DatastorageService,
+    private recipeFire: RecipeFireService
   ) {}
   get controls() {
     // a getter!
@@ -42,7 +46,7 @@ export class ReceipeCreateComponent implements OnInit {
     if (this.editMode) {
       const recipe = this.recipeService.getRecipe(this.id);
       recipeName = recipe.name;
-      recipeImagePath = recipe.imgPath;
+      recipeImagePath = recipe.imagePath;
 
       console.log('Image Path: ' + recipeImagePath);
 
@@ -76,7 +80,9 @@ export class ReceipeCreateComponent implements OnInit {
     if (this.editMode) {
       this.recipeService.updateRecipe(this.id, this.recipeForm.value);
     } else {
-      this.recipeService.addRecipe(this.recipeForm.value);
+      this.recipeFire.createRecipe(this.recipeForm.value);
+      //this.dataService.saveRecipes(this.recipeForm.value);
+      // this.recipeService.addRecipe(this.recipeForm.value);
     }
     this.onCancel();
   }

@@ -6,7 +6,7 @@
 <div class="col-sm-5">
   <div class="row">
     <div class="col-sm-12">
-      <h3>{{ recipe.name }}</h3>
+      <h3>{{ recipe[0].name }}</h3>
     </div>
   </div>
   <br/>
@@ -35,7 +35,7 @@
   <br/>
   <div class="row">
     <div class="col-sm-12">
-      Decsription: {{recipe.description}}
+      Decsription: {{recipe[0].description}}
     </div>
   </div>
   <br/>
@@ -43,7 +43,7 @@
     <div class="col-sm-12">
       Ingredients:
       <ul class="list-group">
-        <li *ngFor="let ing of recipe.ingredeients" class="list-group-item">
+        <li *ngFor="let ing of recipe[0].ingredeients" class="list-group-item">
           {{ ing.ingName }} -- {{ ing.ingAmount }}
         </li>
       </ul>
@@ -53,8 +53,8 @@
 
 <div class="col-sm-auto ml-5 mt-3 ">
   <img
-    src="{{ recipe.imgPath }} "
-    alt="{{ recipe.name }} "
+    src="{{ recipe[0].imagePath }} "
+    alt="{{ recipe[0].name }} "
     class="img-fluid rounded "
     style="max-height: 220px;"
   />
