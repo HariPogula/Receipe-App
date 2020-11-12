@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 import { Ingredeient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from './shoppping-list.service';
 
@@ -9,17 +10,25 @@ import { ShoppingListService } from './shoppping-list.service';
   styleUrls: ['./shopping-list.component.scss'],
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  ingredients: Ingredeient[];
+  ingredients: Observable<{ ingredients: Ingredeient[] }>;
   private igChangedSub: Subscription;
-  constructor(private slService: ShoppingListService) {}
+  constructor(
+    private slService: ShoppingListService,
+    // Store will tell what type reducer we are using
+    // "shoppingList" name should match with app.module key and that key return a reducer.
+    //So we need to pass the key from reducer intial state with it's type
+    private store: Store<{ shoppingList: { ingredients: Ingredeient[] } }>
+  ) {}
 
   ngOnInit(): void {
-    this.ingredients = this.slService.getIngredients();
-    this.igChangedSub = this.slService.ingChanged.subscribe(
-      (ing: Ingredeient[]) => {
-        this.ingredients = ing;
-      }
-    );
+    this.ingredients = this.store.select('shoppingList');
+
+    // this.ingredients = this.slService.getIngredients();
+    // this.igChangedSub = this.slService.ingChanged.subscribe(
+    //   (ing: Ingredeient[]) => {
+    //     this.ingredients = ing;
+    //   }
+    //);
   }
 
   // inIngAdded(newIng: Ingredeient) {
@@ -32,6 +41,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.igChangedSub.unsubscribe();
+    // this.igChangedSub.unsubscribe();
   }
 }

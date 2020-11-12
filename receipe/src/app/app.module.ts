@@ -18,6 +18,9 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './receipe/core/core.module';
 import { AuthModule } from './auth/auth.module';
 
+import { StoreModule } from '@ngrx/store';
+import { ShoppingListReducer } from './shopping/store/shopping-list.reducer';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -33,6 +36,7 @@ import { AuthModule } from './auth/auth.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFirestoreModule,
+    StoreModule.forRoot({ shoppingList: ShoppingListReducer }),
   ],
 
   providers: [],
