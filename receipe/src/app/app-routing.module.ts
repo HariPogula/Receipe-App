@@ -1,40 +1,33 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard';
 import { AuthComponent } from './auth/auth/auth.component';
-import { ReceipeCreateComponent } from './receipe/receipe-create/receipe-create.component';
-import { ReceipeDetailComponent } from './receipe/receipe-detail/receipe-detail.component';
-import { ReceipeStartComponent } from './receipe/receipe-start/receipe-start.component';
-import { ReceipesComponent } from './receipe/receipes/receipes.component';
 import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.component';
 
 const routes: Routes = [
   {
     path: 'recipes',
-    // loadChildren: () =>
-    //   import('./receipe/receipe.module').then((r) => r.ReceipeModule),
-    component: ReceipesComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: ReceipeStartComponent },
-      { path: 'new', component: ReceipeCreateComponent },
-      { path: ':id', component: ReceipeDetailComponent },
-      { path: ':id/edit', component: ReceipeCreateComponent },
-    ],
+    loadChildren: () =>
+      import('../app/receipe/recipe.module').then((r) => r.RecipeModule),
   },
   {
     path: 'shopping-list',
-    component: ShoppingListComponent,
-    // loadChildren: () =>
-    //   import('./shopping/shopping.module').then((s) => s.ShoppingModule),
+    loadChildren: () =>
+      import('../app/shopping/shopping.modules').then((s) => s.ShoppingModule),
   },
-  { path: 'auth', component: AuthComponent },
-  { path: '', redirectTo: 'recipes', pathMatch: 'full' },
-  { path: '**', redirectTo: 'recipes', pathMatch: 'full' },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('../app/auth/auth.module').then((a) => a.AuthModule),
+  },
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'recipes', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
 
   exports: [RouterModule],
 })
